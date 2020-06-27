@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Category;
 use App\Models\User\Message;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,9 @@ class ContactsController extends Controller
 {
     public function index()
     {
-        return view('user.partials.contacts');
+        $cat = new Category();
+        $categories = $cat->getAllCategories();
+        return view('user.partials.contacts', compact('categories'));
     }
 
     public function sendMessage(Request $request)

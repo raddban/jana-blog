@@ -81,24 +81,15 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="{{ route('user.home') }}">Home</a></li>
                                 <li><a href="#">Receptes</a>
                                     <div class="megamenu">
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Salāti</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Zupas</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Vistas Ēdieni</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Cūkgaļas ēdieni</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Deserts</a></li>
-                                        </ul>
+                                        @foreach($categories as $category)
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="{{ route('user.category',$category->id) }}">- {{$category->title}}</a></li>
+                                            </ul>
+                                        @endforeach
+
                                     </div>
                                 </li>
                                 <li><a href="{{ route('user.contacts')}}">Kontakti</a></li>

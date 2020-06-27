@@ -20,13 +20,14 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form>
+                            <form action="{{ route('admin.save.recipe') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputFile">File input</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                                <input name="file" type="file" class="custom-file-input" id="exampleInputFile">
                                                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                             </div>
                                             <div class="input-group-append">
@@ -36,18 +37,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="title">Receptes nosaukums</label>
-                                        <input type="text" class="form-control" id="title" placeholder="Receptes nosaukums">
+                                        <input name="title" type="text" class="form-control" id="title" placeholder="Receptes nosaukums">
                                     </div>
                                     <div class="form-group">
                                         <label for="ingredients">Nepieciešamās sastāvdaļas</label>
-                                        <input type="text" class="form-control" id="ingredients" placeholder="Nepieciešamās sastāvdaļas">
+                                        <input name="ingredients" type="text" class="form-control" id="ingredients" placeholder="Nepieciešamās sastāvdaļas">
                                     </div>
                                     <div class="form-group">
                                         <label>Kategorija</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">Zupas</option>
-                                            <option value="">Deserti</option>
-                                            <option value="">Vistas ediens</option>
+                                        <select name="category" id="" class="form-control">
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -71,7 +72,7 @@
                                             <!-- /.card-header -->
                                             <div class="card-body pad">
                                                 <div class="mb-3">
-                <textarea class="textarea" placeholder="Place some text here"
+                <textarea name="recipe" class="textarea" placeholder="Place some text here"
                           style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                 </div>
                                             </div>

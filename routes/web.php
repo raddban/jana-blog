@@ -29,6 +29,11 @@ Route::get('/admin-add-new-recipe',[
     'as' => 'admin.add.new.recipe',
     'middleware' => ['auth']
 ]);
+Route::post('/admin-save-new-recipe',[
+    'uses' => 'Admin\RecipeController@saveNewRecipe',
+    'as' => 'admin.save.recipe',
+    'middleware' => ['auth']
+]);
 Route::get('/admin-blog', [
    'uses' => 'Admin\BlogController@index',
    'as' => 'admin.blog',
@@ -69,6 +74,11 @@ Route::post('/admin-new-category', [
     'as' => 'admin.save.category',
     'middleware' => ['auth']
 ]);
+Route::get('/admin-comments', [
+    'uses' => 'Admin\CommentsController@index',
+    'as' => 'admin.comments',
+    'middleware' => ['auth']
+]);
 
 
 Auth::routes();
@@ -85,4 +95,16 @@ Route::get('/user-contacts', [
 Route::post('/user-send-message', [
    'uses' => 'User\ContactsController@sendMessage',
    'as' => 'user.send.message'
+]);
+Route::get('/user-category/{id}', [
+   'uses' => 'User\CategoriesController@index',
+   'as' => 'user.category'
+]);
+Route::get('/user-single-dish/{slug}', [
+   'uses' => 'User\RecipeController@index',
+   'as' => 'user.single.dish'
+]);
+Route::post('/user-leave-comment', [
+    'uses' => 'User\CommentController@index',
+    'as' => 'user.leave.comment'
 ]);

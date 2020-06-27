@@ -16,6 +16,7 @@
                             <!-- ./card-header -->
                             <div class="card-body">
                                 <table class="table expandable-table table-bordered">
+                                    {{ $recipes->links() }}
                                     <thead>
                                     <tr>
                                         <th>Nr.</th>
@@ -26,20 +27,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="expandable-header">
-                                        <td>1</td>
-                                        <td><img src="" alt="Ābolu pīrāgs"></td>
-                                        <td>Ābolu pīrāgs</td>
-                                        <td>26-06-2020</td>
-                                        <td><a href="#">Izdzēst</a></td>
-                                    </tr>
-                                    <tr class="expandable-body" data-expandable-table="collapsed">
-                                        <td colspan="5">
-                                            <p>
-                                                Recepte kā pagatavot ābolu pīrāgu
-                                            </p>
-                                        </td>
-                                    </tr>
+                                    @foreach($recipes as $recipe)
+                                        <tr class="expandable-header">
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td><img src="{{ $recipe->picture_path }}" alt="{{ $recipe->title }}"></td>
+                                            <td>{{ $recipe->title }}</td>
+                                            <td>{{ $recipe->created_at }}</td>
+                                            <td><a href="#">Izdzēst</a></td>
+                                        </tr>
+                                        <tr class="expandable-body" data-expandable-table="collapsed">
+                                            <td colspan="5">
+                                                <p>
+                                                    {!! $recipe->description !!}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                                 <a href="{{ route('admin.add.new.recipe') }}" class="btn btn-success my-3">Pievienot jaunu recepti</a>
