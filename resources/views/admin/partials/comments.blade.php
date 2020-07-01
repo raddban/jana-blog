@@ -43,11 +43,18 @@
                                     @foreach($comments as $comment)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                            <td>{{ $recipe_title->title }}</td>
+                                            <td>{{ $comment->recipe_title }}</td>
                                             <td>{{ $comment->name }}</td>
                                             <td>{{ $comment->email }}</td>
                                             <td>{{ $comment->created_at }}</td>
-                                            <td>Izdzēst</td>
+                                            <form action="{{route('admin.delete.comment', $comment->id)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <td>
+                                                    <button type="submit" class="btn btn-danger">Izdzēst</button>
+                                                </td>
+                                            </form>
+
                                         </tr>
                                     @endforeach
                                     </tbody>

@@ -13,13 +13,13 @@
             <div class="card card-widget">
                 <div class="card-header">
                     <div class="user-block">
-                        <span class="username"><a href="#">Title: {{ $recipe->title }}</a></span>
-                        <span class="description float-right">Publicēts: {{ $recipe->created_at }} </span>
+                        <span class="username"><a href="#"> {{ $recipe->title }}</a></span>
+                        <span class="description float-right"> {{ $recipe->created_at }} </span>
                     </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <a href="{{ route('user.single.dish', $recipe->id) }}"><img class="img-fluid pad" src="{{ URL::to('admin/dist/img/photo2.png')}}" alt="Photo"></a>
+                    <a href="{{ route('user.single.dish', $recipe->id) }}"><img style="width: 500px; height: 500px;" class="img-fluid pad" src="{{ URL::to('storage/' . $recipe->picture_path)}}" alt="Photo"></a>
                 </div>
                 <!-- /.card-body -->
             </div>

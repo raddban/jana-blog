@@ -21,4 +21,11 @@ class MessageController extends Controller
         $single = $message->getMessageById($id);
         return view('admin.partials.read-mail', compact('single'));
     }
+
+    public function deleteMessage($id)
+    {
+        $delete = new Message();
+        $delete->deleteById($id);
+        return redirect()->back();
+    }
 }

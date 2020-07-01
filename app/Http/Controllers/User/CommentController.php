@@ -19,6 +19,7 @@ class CommentController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'message' => $request->input('message'),
+            'recipe_title' => $request->input('recipe_title'),
             'recipe_id' => $request->input('recipe_id')
         ]);
         return redirect()->back();

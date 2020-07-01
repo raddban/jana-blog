@@ -15,4 +15,9 @@ class Message extends Model
     {
         return Message::where('id', $id)->first();
     }
+
+    public function deleteById($id)
+    {
+        return Message::where('id', $id)->delete();
+    }
 }

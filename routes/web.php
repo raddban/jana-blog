@@ -34,6 +34,11 @@ Route::post('/admin-save-new-recipe',[
     'as' => 'admin.save.recipe',
     'middleware' => ['auth']
 ]);
+Route::delete('/admin-delete-recipe/{id}', [
+    'uses' => 'Admin\RecipeController@deleteRecipe',
+    'as' => 'admin.delete.recipe',
+    'middleware' => ['auth']
+]);
 Route::get('/admin-blog', [
    'uses' => 'Admin\BlogController@index',
    'as' => 'admin.blog',
@@ -49,6 +54,11 @@ Route::post('/admin-save-contacts', [
     'as' => 'admin.save.contacts',
     'middleware' => ['auth']
 ]);
+Route::put('/admin-save-about-me', [
+    'uses' => 'Admin\ContactsController@saveAboutMe',
+    'as' => 'admin.save.about.me',
+    'middleware' => ['auth']
+]);
 Route::get('/admin-messages', [
     'uses' => 'Admin\MessageController@index',
     'as' => 'admin.messages',
@@ -57,6 +67,11 @@ Route::get('/admin-messages', [
 Route::get('/admin-read-mail/{id}', [
     'uses' => 'Admin\MessageController@readMail',
     'as' => 'admin.read.mail',
+    'middleware' => ['auth']
+]);
+Route::delete('/admin-delete-message/{id}', [
+    'uses' => 'Admin\MessageController@deleteMessage',
+    'as' => 'admin.delete.message',
     'middleware' => ['auth']
 ]);
 Route::get('/admin-categories', [
@@ -74,9 +89,19 @@ Route::post('/admin-new-category', [
     'as' => 'admin.save.category',
     'middleware' => ['auth']
 ]);
+Route::delete('/admin-delete-category/{id}', [
+    'uses' => 'Admin\CategoriesController@deleteCategory',
+    'as' => 'admin.delete.category',
+    'middleware' => ['auth']
+]);
 Route::get('/admin-comments', [
     'uses' => 'Admin\CommentsController@index',
     'as' => 'admin.comments',
+    'middleware' => ['auth']
+]);
+Route::delete('/admin-delete-comment/{id}', [
+    'uses' => 'Admin\CommentsController@deleteComment',
+    'as' => 'admin.delete.comment',
     'middleware' => ['auth']
 ]);
 
@@ -107,4 +132,8 @@ Route::get('/user-single-dish/{slug}', [
 Route::post('/user-leave-comment', [
     'uses' => 'User\CommentController@index',
     'as' => 'user.leave.comment'
+]);
+Route::get('/user-about-me', [
+    'uses' => 'User\AboutMeController@index',
+    'as' => 'user.about.me'
 ]);

@@ -15,41 +15,10 @@
                         <div class="card-header">
                             <h3 class="card-title">Inbox</h3>
 
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" placeholder="Search Mail">
-                                    <div class="input-group-append">
-                                        <div class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- /.card-tools -->
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
-                            <div class="mailbox-controls">
-                                <!-- Check all button -->
-                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
-                                </button>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                                </div>
-                                <!-- /.btn-group -->
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                                <div class="float-right">
-                                    1-50/200
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                                    </div>
-                                    <!-- /.btn-group -->
-                                </div>
-                                <!-- /.float-right -->
-                            </div>
                             <div class="table-responsive mailbox-messages">
                                 <table class="table table-hover table-striped">
                                     <tbody>
@@ -57,16 +26,16 @@
                                     @foreach($messages as $message)
                                         <tr>
                                             <td>
-                                                    <div class="icheck">
-                                                        <input type="checkbox" id="check" name="{{ $message->id }}[]">
-                                                        <label for="check"></label>
-                                                    </div>
+                                            <form action="{{ route('admin.delete.message', $message->id) }}" method="POST">
+                                                @csrf
+                                                @method(' DELETE')
 
+                                                    <button type="submit" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
 
+                                            </form>
                                             </td>
                                             <td class="mailbox-name"><a href="{{ route('admin.read.mail', $message->id) }}">{{ $message->name }}</a></td>
-                                            <td class="mailbox-subject"><b> {{ $message->subject }}</b>
-                                            </td>
+                                            <td class="mailbox-subject"><b> {{ $message->subject }}</b></td>
                                             <td class="mailbox-date">{{ $message->created_at }}</td>
                                         </tr>
 
@@ -79,29 +48,6 @@
                             <!-- /.mail-box-messages -->
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer p-0">
-                            <div class="mailbox-controls">
-                                <!-- Check all button -->
-                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
-                                </button>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                                </div>
-                                <!-- /.btn-group -->
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                                <div class="float-right">
-                                    1-50/200
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                                    </div>
-                                    <!-- /.btn-group -->
-                                </div>
-                                <!-- /.float-right -->
-                            </div>
-                        </div>
                     </div>
                     </div>
                     <!-- /.card -->

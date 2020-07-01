@@ -24,7 +24,6 @@
                                         <label for="title">Kategorijas nosaukums</label>
                                         <input name="title" type="text" class="form-control" id="title" placeholder="Kategorijas nosaukums">
                                     </div>
-
                                 </div>
                                 <!-- /.card-body -->
 

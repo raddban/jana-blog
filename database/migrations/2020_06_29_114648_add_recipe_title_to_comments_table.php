@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSlugToRecipesTable extends Migration
+class AddRecipeTitleToCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSlugToRecipesTable extends Migration
      */
     public function up()
     {
-        Schema::table('recipes', function (Blueprint $table) {
-            $table->string('slug')->after('title');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->string('recipe_title')->after('message')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddSlugToRecipesTable extends Migration
      */
     public function down()
     {
-        Schema::table('recipes', function (Blueprint $table) {
-            $table->dropColumn('slug');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn('recipe_title');
         });
     }
 }

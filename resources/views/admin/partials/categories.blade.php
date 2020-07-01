@@ -31,7 +31,14 @@
                                             <td>{{ $loop->index + 1 }}</td>
                                             <td>{{ $category->title }}</td>
                                             <td>{{ $category->created_at }}</td>
-                                            <td><a href="#">Izdzēst</a></td>
+                                            <form action="{{ route('admin.delete.category', $category->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <td>
+                                                    <button type="submit" class="btn btn-danger">Izdzēst</button>
+                                                </td>
+                                            </form>
+
                                         </tr>
 
                                     @endforeach

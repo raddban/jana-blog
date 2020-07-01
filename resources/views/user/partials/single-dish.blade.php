@@ -13,14 +13,16 @@
                 <div class="col-12 col-lg-8 col-xl-9">
                     <div class="post-details-content mb-100">
                         <div class="blog-thumbnail mb-50">
-                            <img src="{{ URL::to('user/img/bg-img/24.jpg')}}" alt="">
+                            <img src="{{ URL::to('storage/' . $single_dish->picture_path)}}" alt="">
                         </div>
                         <div class="blog-content">
                             <h4 class="post-title">{{ $single_dish->title }}</h4>
                             <div class="post-meta mb-50">
                                 <a href="#" class="post-date">{{ $single_dish->created_at }} </a>
-                                <a href="#" class="post-author"> Jana Kotikova </a>
+                                <a href="#" class="post-author">Jana Kotikova</a> <br>
+                                <span><b>Sastādvaļas:</b> {{ $single_dish->ingredients }}</span>
                             </div>
+
                             {!! $single_dish->description !!}
                         </div>
                     </div>
@@ -52,7 +54,7 @@
                     </div>
 
                     <div class="post-a-comment-area mb-30 clearfix">
-                        <h4 class="mb-50">Leave a reply</h4>
+                        <h4 class="mb-50">Atstāt komentāru</h4>
 
                         <!-- Reply Form -->
                         <div class="contact-form-area">
@@ -70,6 +72,7 @@
                                     </div>
                                     <div class="col-12">
                                         <input name="recipe_id" type="hidden" value="{{ $single_dish->id }}">
+                                        <input name="recipe_title" type="hidden" value="{{ $single_dish->title }}">
                                         <button class="btn bueno-btn mt-30" type="submit">Komentēt</button>
                                     </div>
                                 </div>

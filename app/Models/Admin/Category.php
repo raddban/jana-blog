@@ -13,4 +13,8 @@ class Category extends Model
         return Category::all();
     }
 
+    public function deleteById($id)
+    {
+        return Category::where('id', $id)->delete();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\User\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,16 @@ class Recipe extends Model
 
     public function getDishFromCommentTable()
     {
-        return DB::table('recipes')
-                ->join('comments', 'recipes.id', '=', 'comments.recipe_id')->get();
+        return Comment::all('recipe_title');
+    }
+
+    public function deleteById($id)
+    {
+        return Recipe::where('id', $id)->delete();
+    }
+
+    public function allPicFromRecipes()
+    {
+        return Recipe::all('picture_path');
     }
 }

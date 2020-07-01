@@ -13,9 +13,13 @@ class CommentsController extends Controller
     {
         $com = new Comment();
         $comments = $com->getAllComments();
-        $rec = new Recipe();
-        $recipe_title = $rec->getDishFromCommentTable();
-        var_dump($recipe_title);die;
-        return view('admin.partials.comments', compact('comments', 'recipe_title'));
+        return view('admin.partials.comments', compact('comments'));
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = new Comment();
+        $comment->deleteById($id);
+        return redirect()->back();
     }
 }

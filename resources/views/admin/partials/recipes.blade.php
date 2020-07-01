@@ -30,10 +30,16 @@
                                     @foreach($recipes as $recipe)
                                         <tr class="expandable-header">
                                             <td>{{ $loop->index + 1 }}</td>
-                                            <td><img src="{{ $recipe->picture_path }}" alt="{{ $recipe->title }}"></td>
+                                            <td><img style="width: 50px" src="{{'storage/' . $recipe->picture_path }}" alt="{{ $recipe->title }}"></td>
                                             <td>{{ $recipe->title }}</td>
                                             <td>{{ $recipe->created_at }}</td>
-                                            <td><a href="#">Izdzēst</a></td>
+                                            <form action="{{ route('admin.delete.recipe', $recipe->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <td>
+                                                    <button type="submit" class="btn btn-danger">Izdzēst</button>
+                                                </td>
+                                            </form>
                                         </tr>
                                         <tr class="expandable-body" data-expandable-table="collapsed">
                                             <td colspan="5">

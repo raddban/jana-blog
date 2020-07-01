@@ -22,13 +22,21 @@ class CategoriesController extends Controller
 
     public function saveNewCategory(Request $request)
     {
+//        ddd($request->input('title'));
         $this->validate($request, [
-            'title' => 'required|min:2'
+            'title' => 'required|min:2',
         ]);
         Category::create([
-            'title' => $request->input('title')
+            'title' => $request->input('title'),
         ]);
 
         return redirect()->back()->with('info', 'Jauna kategorija izveidota');
+    }
+
+    public function deleteCategory($id)
+    {
+        $delete = new Category();
+        $delete->deleteById($id);
+        return redirect()->back();
     }
 }
